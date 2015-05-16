@@ -1,0 +1,2 @@
+---
+gfs2::cluster_allow::cluster_nets: '1.2.3.4/32'

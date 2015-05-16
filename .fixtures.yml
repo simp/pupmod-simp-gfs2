@@ -1,0 +1,8 @@
+---
+fixtures:
+  symlinks:
+    gfs2: "#{source_dir}"
+    common: "#{source_dir}/../common"
+    iptables: "#{source_dir}/../iptables"
+    network: "#{source_dir}/../network"
+    stdlib: "#{source_dir}/../stdlib"
