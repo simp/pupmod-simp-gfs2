@@ -1,8 +1,9 @@
 ---
 fixtures:
+  repositories:
+    common: "git://github.com/simp/pupmod-simp-common"
+    iptables: "git://github.com/simp/pupmod-simp-iptables"
+    network: "git://github.com/simp/pupmod-simp-network"
+    stdlib: "git://github.com/simp/puppetlabs-stdlib"
   symlinks:
     gfs2: "#{source_dir}"
-    common: "#{source_dir}/../common"
-    iptables: "#{source_dir}/../iptables"
-    network: "#{source_dir}/../network"
-    stdlib: "#{source_dir}/../stdlib"
