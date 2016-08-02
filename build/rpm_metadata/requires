@@ -1,0 +1,2 @@
+Requires: pupmod-simp-iptables >= 4.1.0-3
+Obsoletes: pupmod-gfs2-test
