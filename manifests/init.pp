@@ -38,7 +38,7 @@ class gfs2 {
   if $::virtual and ( ( $::virtual == 'xenu' ) or ( $::virtual == 'xen0' ) ) {
     package { [
       'kmod-gnbd-xen',
-      "libvirt.$::hardwaremodel" ]:
+      "libvirt.${::hardwaremodel}" ]:
         ensure => 'latest'
     }
   }
