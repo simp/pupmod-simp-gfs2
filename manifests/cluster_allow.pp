@@ -78,6 +78,6 @@ class gfs2::cluster_allow (
 
   iptables_rule { 'allow_cluster_multicast':
     order   => '6',
-    content => "-s $cluster_nets -m addrtype --src-type MULTICAST -j ACCEPT"
+    content => "-s ${cluster_nets} -m addrtype --src-type MULTICAST -j ACCEPT"
   }
 }
