@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_a8ea230d",
+        "filename": "README.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 28,
+      "author": {
+        "id": 1005361
+      },
+      "writtenOn": "2016-10-12T13:20:30Z",
+      "side": 1,
+      "message": "simp/iptables",
+      "range": {
+        "startLine": 28,
+        "startChar": 35,
+        "endLine": 28,
+        "endChar": 48
+      },
+      "revId": "0e009e0ad6e9e18753e6034469b8d8209e624dd0",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
