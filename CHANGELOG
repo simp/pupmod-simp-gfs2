@@ -1,3 +1,7 @@
+* Wed Jan 04 2016 Nick Miller <nick.miller@onyxpoint.com> - 5.0.0-0
+- Strong typed module
+- Renamed $cluster_nets to the catalyst $trusted_nets
+
 * Tue Aug 02 2016 Trevor Vaughan <tvaughan@onyxpoint.com> - 4.1.1-0
 - Update to the new package naming convention
 

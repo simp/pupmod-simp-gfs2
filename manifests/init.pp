@@ -1,19 +1,13 @@
-# == Class: gfs2
-#
 # This class supports the Global File System.  It ensures that the
 # appropriate files are in the appropriate places and that the necessary
 # packages and services are present.
 #
-# == Notes
-#
 # This module is incompatible with the acpid module.
 #
-# == Authors
-#
-# * Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author Trevor Vaughan <tvaughan@onyxpoint.com>
 #
 class gfs2 {
-  include 'network'
+  include '::network'
 
   file { '/etc/cluster':
     ensure => 'directory',
@@ -23,7 +17,7 @@ class gfs2 {
   }
 
   iptables_rule { 'allow_anycast_multicast':
-    order   => '5',
+    order   => 5,
     content => '-s 224.0.0.1 -m addrtype --src-type MULTICAST -j ACCEPT',
     require => Package['ricci']
   }
@@ -35,10 +29,10 @@ class gfs2 {
   # For the SCSI Fence
   package { 'sg3_utils': ensure => 'latest' }
 
-  if $::virtual and ( ( $::virtual == 'xenu' ) or ( $::virtual == 'xen0' ) ) {
+  if $facts['virtual'] and ( ( $facts['virtual'] == 'xenu' ) or ( $facts['virtual'] == 'xen0' ) ) {
     package { [
       'kmod-gnbd-xen',
-      "libvirt.${::hardwaremodel}" ]:
+      "libvirt.${facts['hardwaremodel']}" ]:
         ensure => 'latest'
     }
   }

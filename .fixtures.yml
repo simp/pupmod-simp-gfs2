@@ -4,8 +4,6 @@ fixtures:
     iptables: "https://github.com/simp/pupmod-simp-iptables"
     network: "https://github.com/simp/pupmod-simp-network"
     simplib: "https://github.com/simp/pupmod-simp-simplib"
-    stdlib:
-      repo: "https://github.com/simp/puppetlabs-stdlib"
-      branch: "simp-master"
+    stdlib: "https://github.com/simp/puppetlabs-stdlib"
   symlinks:
     gfs2: "#{source_dir}"
