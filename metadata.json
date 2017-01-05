@@ -1,25 +1,28 @@
 {
   "name":    "simp-gfs2",
-  "version": "4.1.1",
+  "version": "5.0.0",
   "author":  "simp",
   "summary": "manages gfs2",
   "license": "Apache-2.0",
   "source":  "https://github.com/simp/pupmod-simp-gfs2",
   "project_page": "https://github.com/simp/pupmod-simp-gfs2",
   "issues_url":   "https://simp-project.atlassian.net",
-  "tags": [ "simp", "gfs2" ],
+  "tags": [
+    "simp",
+    "gfs2"
+  ],
   "dependencies": [
     {
       "name": "simp/iptables",
-      "version_requirement": ">= 4.1.0"
-    },
-    {
-      "name": "puppetlabs/stdlib",
-      "version_requirement": ">= 3.2.0"
+      "version_requirement": ">= 6.0.0 < 7.0.0"
     },
     {
       "name": "simp/simplib",
-      "version_requirement": ">= 4.1.0"
+      "version_requirement": ">= 2.0.0 < 3.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.9.0 < 5.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -35,5 +38,16 @@
         "6"
       ]
     }
-  ]
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": "4.x"
+    },
+    {
+      "name": "pe",
+      "version_requirement": ">= 2016.2.0"
+    }
+  ],
+  "data_provider": "hiera"
 }

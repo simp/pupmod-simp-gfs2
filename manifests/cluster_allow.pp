@@ -1,7 +1,5 @@
-# == Class: gfs2::cluster_allow
-#
 # This function opens the following ports and connection types for the provided
-# $cluster_nets.
+# $trusted_nets.
 #
 #   Port Number(s)            Type   Use
 #   1229                      UDP    fencing access
@@ -15,69 +13,65 @@
 #   50006 50008 50009         TCP    ccsd access
 #   50007                     UDP    ccsd access
 #
-# == Parameters
+# @param trusted_nets
+#   For the widest subnet accessibility, set $trusted_nets to
+#   nets2cidr(hiera('trusted_nets')).
 #
-# [*cluster_nets*]
-#   For the widest subnet accessibility, set $cluster_nets to
-#   nets2cidr(hiera('client_nets')).
-#
-# == Authors
-#
-# * Trevor Vaughan <tvaughan@onyxpoint.com>
+# @author Trevor Vaughan <tvaughan@onyxpoint.com>
 #
 class gfs2::cluster_allow (
-  $cluster_nets
+  Simplib::Netlist $trusted_nets = simplib::lookup('simp_options::trusted_nets', { 'default_value' => ['127.0.0.1'] }),
 ) {
 
-  iptables::add_udp_listen { 'allow_cman':
-    client_nets => $cluster_nets,
-    dports      => ['5404','5405','6809']
+  iptables::listen::udp { 'allow_cman':
+    trusted_nets => $trusted_nets,
+    dports       => [ 5404,5405,6809 ]
   }
 
   # Conga
-  iptables::add_tcp_stateful_listen { 'allow_ricci':
-    client_nets => $cluster_nets,
-    dports      => '11111'
+  iptables::listen::tcp_stateful { 'allow_ricci':
+    trusted_nets => $trusted_nets,
+    dports       => [ 11111 ]
   }
 
-  iptables::add_udp_listen { 'allow_ricci':
-    client_nets => $cluster_nets,
-    dports      => '11111',
-    require     => Service['ricci']
+  iptables::listen::udp { 'allow_ricci':
+    trusted_nets => $trusted_nets,
+    dports       => [ 11111 ],
+    require      => Service['ricci']
   }
 
-  iptables::add_tcp_stateful_listen { 'allow_gnbd':
-    client_nets => $cluster_nets,
-    dports      => '14567'
+  iptables::listen::tcp_stateful { 'allow_gnbd':
+    trusted_nets => $trusted_nets,
+    dports       => [ 14567 ]
   }
 
-  iptables::add_tcp_stateful_listen { 'allow_modclusterd':
-    client_nets => $cluster_nets,
-    dports      => '16851'
+  iptables::listen::tcp_stateful { 'allow_modclusterd':
+    trusted_nets => $trusted_nets,
+    dports       => [ 16851 ]
   }
 
-  iptables::add_tcp_stateful_listen { 'allow_dlm':
-    client_nets => $cluster_nets,
-    dports      => '21064'
+  iptables::listen::tcp_stateful { 'allow_dlm':
+    trusted_nets => $trusted_nets,
+    dports       => [ 21064 ]
   }
 
-  iptables::add_tcp_stateful_listen { 'allow_ccsd':
-    client_nets => $cluster_nets,
-    dports      => [ '50006', '50008', '50009' ]
+  iptables::listen::tcp_stateful { 'allow_ccsd':
+    trusted_nets => $trusted_nets,
+    dports       => [ 50006,50008,50009 ]
   }
 
-  iptables::add_udp_listen { 'allow_ccsd':
-    client_nets => $cluster_nets,
-    dports      => '50007'
+  iptables::listen::udp { 'allow_ccsd':
+    trusted_nets => $trusted_nets,
+    dports       => [ 50007 ]
   }
 
-  iptables::add_udp_listen { 'allow_fencing':
-    client_nets => $cluster_nets,
-    dports      => '1229'
+  iptables::listen::udp { 'allow_fencing':
+    trusted_nets => $trusted_nets,
+    dports       => [ 1229 ]
   }
 
   iptables_rule { 'allow_cluster_multicast':
-    order   => '6',
-    content => "-s ${cluster_nets} -m addrtype --src-type MULTICAST -j ACCEPT"
+    order   => 6,
+    content => "-s ${trusted_nets} -m addrtype --src-type MULTICAST -j ACCEPT"
   }
 }

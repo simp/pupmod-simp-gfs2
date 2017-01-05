@@ -13,7 +13,6 @@ describe 'gfs2' do
         context 'virtual_xenu' do
           let(:facts) {
             facts[:virtual] = 'xenu'
-
             facts
           }
 
